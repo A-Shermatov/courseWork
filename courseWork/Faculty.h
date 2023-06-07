@@ -18,14 +18,10 @@ public:
 
 	~Faculty()
 	{
-		int current = 0;
-		while (current < MAX_NUM_TEACHERS)
-		{
-			teachers[current].set_name("");
-			teachers[current].set_position("");
-			current++;
+		for (int i = 0; i < MAX_NUM_TEACHERS; ++i) {
+			teachers[i].set_name("");
+			teachers[i].set_position("");
 		}
-		delete[] teachers;
 		teachers = nullptr;
 	}
 
@@ -49,6 +45,7 @@ public:
 
 	int get_empty_position(std::string _teacher_name)
 	{
+		if (is_empty()) return 0;
 		if (_teacher_name < teachers[0].get_name()) {
 			int index = -1;
 			for (int i = 0; i <= MAX_NUM_TEACHERS; ++i) {
@@ -142,6 +139,7 @@ public:
 			teachers[index].set_name("");
 			teachers[index].set_position("");
 		}
+		count_teachers--;
 	}
 
 	void show_in_console()

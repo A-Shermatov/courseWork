@@ -5,18 +5,20 @@ Institute* institute;
 
 void parse_faculty(std::string faculty)
 {
-    faculty = faculty.substr(faculty.find(':') + 1, faculty.find('\n'));
+    int count = 0;
+    faculty = faculty.substr(faculty.find(':') + 1);
     if (faculty.size() == 0)
     {
         std::cout << "Invalid name for faculty\n";
         return;
     }
-    std::string faculty_name = faculty.substr(0, faculty.find('.'));
+    count = faculty.find('.');
+    std::string faculty_name = faculty.substr(0, count);
     Faculty* added_faculty = institute->add_faculty_from_file(faculty_name);
-    faculty = faculty.substr(faculty.find('|') + 1, faculty.find("\n"));
+    faculty = faculty.substr(faculty.find(':') + 1);
     if (faculty.size() > 0)
     {
-        faculty = faculty.substr(1, faculty.find('\n'));
+        faculty = faculty.substr(1);
     }
 
 
@@ -29,20 +31,23 @@ void parse_faculty(std::string faculty)
             std::cout << "Can not add teacher to full faculty\n";
             return;
         }
-        std::string teacher_name = faculty.substr(0, faculty.find('('));
+        count = faculty.find('(');
+        std::string teacher_name = faculty.substr(0, count);
         if (teacher_name.size() == 0)
         {
             std::cout << "Teacher name can not be empty\n";
             return;
         }
-        
-        std::string teacher_position = faculty.substr(faculty.find('(') + 1, faculty.find(')'));
+        // std::cout << "\n" << faculty << "\n";
+        count = faculty.find(')') - faculty.find('(') - 1;
+        std::string teacher_position = faculty.substr(faculty.find('(') + 1, count);
         if (teacher_position.size() == 0)
         {
             std::cout << "Position of teacher can not be empty\n";
             return;
         }
-        faculty = faculty.substr(faculty.find('|') + 1, faculty.find("\n"));
+        count = faculty.find('\n') - faculty.find('|');
+        faculty = faculty.substr(faculty.find('|') + 1, count);
         added_faculty->add_teacher(teacher_name, teacher_position);
     }
 
@@ -131,7 +136,7 @@ public:
         
         Faculty* deleted_faculty = institute->dequeue_faculty();
         if (deleted_faculty != nullptr)
-            std::cout << "Deleted faculty: " << deleted_faculty->get_faculty_name();
+            std::cout << "Deleted faculty: " << deleted_faculty->get_faculty_name() << '\n';
     }
 
     static void delete_teacher_from_faculty()
@@ -185,7 +190,9 @@ public:
         char line[1024];
         in.getline(line, 1024);
         std::string institute_name = line;
-        institute_name = institute_name.substr(institute_name.find(' ') + 1, institute_name.find(':'));
+        int count = institute_name.find('.') - institute_name.find(':') + 1;
+        // std::cout << "\n" << institute_name.find(':') + 1 << institute_name.find('.') << count << '\n';
+        institute_name = institute_name.substr(institute_name.find(':') + 2, count);
         institute = new Institute(institute_name);
         institute_exists = true;
         int prev_number = 0;

@@ -58,7 +58,7 @@ public:
 		while (curr != nullptr) {
 			temp = curr;
 			curr = curr->get_next();
-			delete temp->get_faculty();
+			// delete temp->get_faculty();
 			delete temp;
 		}
 		first = nullptr;
@@ -95,7 +95,7 @@ public:
 	Faculty* find_faculty(std::string _faculty_name) {
 		Node* curr = first;
 		while (curr != nullptr) {
-			if (curr->get_faculty()->get_faculty_name() == _faculty_name) return curr->get_faculty();
+			if (curr->get_faculty() != nullptr && curr->get_faculty()->get_faculty_name() == _faculty_name) return curr->get_faculty();
 			curr = curr->get_next();
 		}
 		return nullptr;
@@ -106,16 +106,16 @@ public:
 	{
 		if (is_empty())
 		{
-			first = new Node;
+			first = new Node();
 			last = first;
 			first->set_faculty(_faculty_name);
 		}
 		else
 		{
-			Node* temp = new Node;
+			Node* temp = new Node();
 			last->set_next(temp);
 			last = last->get_next();
-			first->set_faculty(_faculty_name);
+			last->set_faculty(_faculty_name);
 		}
 	}
 
@@ -125,7 +125,7 @@ public:
 		{
 			Node* temp = first;
 			first = first->get_next();
-			Faculty* faculty = temp->get_faculty();
+			Faculty* faculty = new Faculty(temp->get_faculty()->get_faculty_name());
 			delete temp;
 			return faculty;
 		}
@@ -142,7 +142,9 @@ public:
 		}
 		Node* curr = first;
 		while (last != nullptr && curr != last->get_next()) {
-			curr->get_faculty()->show_in_console();
+			if (curr->get_faculty() != nullptr)
+				// std::cout << '\n' << curr->get_faculty()->get_faculty_name() << '\n';
+				curr->get_faculty()->show_in_console();
 			curr = curr->get_next();
 		}
 	}
@@ -168,5 +170,3 @@ public:
 
 	}
 };
-
-#pragma once

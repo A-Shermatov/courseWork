@@ -8,7 +8,6 @@ int get_int() {
         while (std::cin.get() != '\n');
         std::cout << "\nInput error. Try again.\n";
     }
-    //    cin.ignore(32767, '\n');
     return a;
 }
 

@@ -143,7 +143,6 @@ public:
 		Node* curr = first;
 		while (last != nullptr && curr != last->get_next()) {
 			if (curr->get_faculty() != nullptr)
-				// std::cout << '\n' << curr->get_faculty()->get_faculty_name() << '\n';
 				curr->get_faculty()->show_in_console();
 			curr = curr->get_next();
 		}

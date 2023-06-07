@@ -1,0 +1,2 @@
+The institute name: Kai. Faculty in this institute:
+Faculty_name:CS.Teacher:|AA(aa)|BB(bb)|CC(cc)|DD(dd)|

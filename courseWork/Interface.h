@@ -177,6 +177,10 @@ public:
     {
         std::fstream in;
         in.open("output.txt", std::ios::in);
+        if (!in.good()) {
+            std::cout << "Can not open file!\n";
+            return;
+        }
         char line[1024];
         in.getline(line, 1024);
         std::string institute_name = line;

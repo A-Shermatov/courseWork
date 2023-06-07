@@ -233,6 +233,10 @@ public:
     static void print_institute_to_file()
     {
         std::ofstream out;
+        if (!out.good()) {
+            std::cout << "Can not open file!\n";
+            return;
+        }
         out.open("output.txt", std::ios::out);
         institute->show_in_file(out);
         out.close();

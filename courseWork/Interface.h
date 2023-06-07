@@ -5,14 +5,15 @@ Institute* institute;
 
 void parse_faculty(std::string faculty)
 {
-    faculty = faculty.substr(faculty.find(':') + 1, faculty.find("\n"));
+    faculty = faculty.substr(faculty.find(':') + 1, faculty.find('\n'));
     if (faculty.size() == 0)
     {
         std::cout << "Invalid name for faculty\n";
         return;
     }
-    Faculty* added_faculty = institute->add_faculty_from_file(faculty);
-    faculty = faculty.substr(faculty.find(':') + 1, faculty.find("\n"));
+    std::string faculty_name = faculty.substr(0, faculty.find('.'));
+    Faculty* added_faculty = institute->add_faculty_from_file(faculty_name);
+    faculty = faculty.substr(faculty.find('|') + 1, faculty.find("\n"));
     if (faculty.size() > 0)
     {
         faculty = faculty.substr(1, faculty.find('\n'));
@@ -34,8 +35,8 @@ void parse_faculty(std::string faculty)
             std::cout << "Teacher name can not be empty\n";
             return;
         }
-        faculty = faculty.substr(faculty.find('(') + 1, faculty.find("\n"));
-        std::string teacher_position = faculty.substr(0, faculty.find(')'));
+        
+        std::string teacher_position = faculty.substr(faculty.find('(') + 1, faculty.find(')'));
         if (teacher_position.size() == 0)
         {
             std::cout << "Position of teacher can not be empty\n";
@@ -184,7 +185,7 @@ public:
         char line[1024];
         in.getline(line, 1024);
         std::string institute_name = line;
-        institute_name = institute_name.substr(institute_name.find(':') + 1, institute_name.find('\n'));
+        institute_name = institute_name.substr(institute_name.find(' ') + 1, institute_name.find(':'));
         institute = new Institute(institute_name);
         institute_exists = true;
         int prev_number = 0;

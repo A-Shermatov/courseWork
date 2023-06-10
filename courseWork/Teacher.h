@@ -15,10 +15,7 @@ public:
 	{}
 
 	~Teacher()
-	{
-		name = "";
-		position = "";
-	}
+	{}
 
 	void set_name(std::string _name) { name = _name; }
 

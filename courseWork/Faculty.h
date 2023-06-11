@@ -1,7 +1,6 @@
 #pragma once
 #include "Teacher.h"
 #include <iostream>
-#include <fstream>
 #include <string>
 class Faculty
 {
@@ -24,6 +23,7 @@ public:
 		}
 		teachers = nullptr;
 	}
+
 
 	bool is_empty()
 	{

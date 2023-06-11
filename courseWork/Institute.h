@@ -18,6 +18,7 @@ private:
 			~Node() {
 				delete faculty;
 				faculty = nullptr;
+				next = nullptr;
 			}
 
 			Node* get_next() {
@@ -40,15 +41,13 @@ private:
 	};
 
 	std::string institute_name;
-	Node* first;
-	Node* last;
+	Node* first = nullptr;
+	Node* last = nullptr;
 public:
 
 	Institute(std::string _institute_name)
 	{
 		institute_name = _institute_name;
-		first = nullptr;
-		last = nullptr;
 	}
 
 	~Institute()
@@ -58,7 +57,6 @@ public:
 		while (curr != nullptr) {
 			temp = curr;
 			curr = curr->get_next();
-			// delete temp->get_faculty();
 			delete temp;
 		}
 		first = nullptr;
@@ -82,7 +80,6 @@ public:
 		while (curr != nullptr) {
 			temp = curr;
 			curr = curr->get_next();
-			delete temp->get_faculty();
 			delete temp;
 		}
 	}

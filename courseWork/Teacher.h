@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <string>
 
 
@@ -19,7 +18,7 @@ public:
 
 	void set_name(std::string _name) { name = _name; }
 
-	void set_position(std::string _postion) { position = _postion; }
+	void set_position(std::string _position) { position = _position; }
 
 	std::string get_name() { return name; }
 

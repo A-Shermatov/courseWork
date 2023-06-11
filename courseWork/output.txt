@@ -1,2 +1,3 @@
 The institute name: Kai. Faculty in this institute:
-Faculty_name:CS.Teacher:|AA(aa)|BB(bb)|CC(cc)|DD(dd)|
+Faculty_name:CS.Teacher:|Odinaev(professor)|Shermatov(teacher)|
+Faculty_name:InformationSecurity.Teacher:|Babushkin(teacher)|

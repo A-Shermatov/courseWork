@@ -1,5 +1,6 @@
 #pragma once
 #include "Institute.h"
+#include <fstream>
 bool institute_exists = false;
 Institute* institute;
 
@@ -38,7 +39,6 @@ void parse_faculty(std::string faculty)
             std::cout << "Teacher name can not be empty\n";
             return;
         }
-        // std::cout << "\n" << faculty << "\n";
         count = faculty.find(')') - faculty.find('(') - 1;
         std::string teacher_position = faculty.substr(faculty.find('(') + 1, count);
         if (teacher_position.size() == 0)
